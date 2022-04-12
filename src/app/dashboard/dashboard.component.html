@@ -1,0 +1,76 @@
+<div class="pb-2">
+  <h2>{{ "Dashboard.Title" | translate }}</h2>
+  <p class="mb-2">{{ "Dashboard.Desc" | translate }}</p>
+  <p class="mb-2 color-accent">{{ "Dashboard.CanCustom" | translate }}</p>
+  <p>{{ "Dashboard.LinkText" | translate }} <a href="https://aminreza.info/">{{ "Dashboard.MyName" | translate }}</a></p>
+</div>
+
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="top-statistic">
+
+  <div fxFlex="46" fxLayout="row" fxLayout.xs="column">
+    <div fxFlex="50" fxFlex.xs="100">
+      <mat-card class="mb-2 mat-elevation-z8"  ngClass.gt-xs="me-2">
+        <mat-card-subtitle class="color-primary">{{ "Dashboard.Widgets.Statistics.Customer.Primary" | translate }}</mat-card-subtitle>
+        <mat-card-title class="color-primary">250</mat-card-title>
+        <mat-card-content>
+          <p>{{ "Dashboard.Widgets.Statistics.Customer.Secondary" | translate }}</p>
+          <p>20</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="50" fxFlex.xs="100">
+      <mat-card class="mb-2 mat-elevation-z8" ngClass.gt-sm="me-2">
+        <mat-card-subtitle class="color-primary">{{ "Dashboard.Widgets.Statistics.Rent.Primary" | translate }}</mat-card-subtitle>
+        <mat-card-title class="color-primary">3500</mat-card-title>
+        <mat-card-content>
+          <p>{{ "Dashboard.Widgets.Statistics.Rent.Secondary" | translate }}</p>
+          <p>2100</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex="54" fxLayout="row" fxLayout.xs="column">
+    <div fxFlex="43" fxFlex.xs="100">
+      <mat-card class="mb-2 mat-elevation-z8"  ngClass.gt-xs="me-2">
+        <mat-card-subtitle class="color-primary">{{ "Dashboard.Widgets.Statistics.Product.Primary" | translate }}</mat-card-subtitle>
+        <mat-card-title class="color-primary">120</mat-card-title>
+        <mat-card-content>
+          <p>{{ "Dashboard.Widgets.Statistics.Product.Secondary" | translate }}</p>
+          <p>90</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="57" fxFlex.xs="100">
+      <mat-card class="mb-2 mat-elevation-z8">
+        <mat-card-subtitle class="color-primary">{{ "Dashboard.Widgets.Statistics.Finance.Primary" | translate }} (IRR)</mat-card-subtitle>
+        <mat-card-title class="color-primary">22,500,000</mat-card-title>
+        <mat-card-content>
+          <p>{{ "Dashboard.Widgets.Statistics.Finance.Secondary" | translate }}</p>
+          <p>950,000 IRR</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  
+  
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" class="multi-lang">
+  <div fxFlex="100">
+    <mat-card class="mat-elevation-z8">
+      <mat-card-subtitle>{{ "Dashboard.Widgets.MultiLang.HeadTitle" | translate }}</mat-card-subtitle>
+      <mat-card-title class="color-accent">{{ "Dashboard.Widgets.MultiLang.Title" | translate }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ "Dashboard.Widgets.MultiLang.SubTitle" | translate }}</p>
+        <div fxLayout="row" class="flags">
+          <div fxFlex>
+            <img src="/assets/img/flags/en-en.png" class="pointer mat-elevation-z8 me-1" (click)="changeLang('en')">
+            <img src="/assets/img/flags/fa-ir.png" class="pointer mat-elevation-z8 ms-1" (click)="changeLang('fa')">
+          </div>
+         
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

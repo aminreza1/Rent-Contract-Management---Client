@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>{{data.message}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [color]="data.okColor" [mat-dialog-close]='true'>{{ "Dialogs.Logout.Buttons.Yes" | translate }}</button>
+  <button mat-button [mat-dialog-close]='false' cdkFocusInitial>{{ "Dialogs.Logout.Buttons.No" | translate }}</button>
+</div>

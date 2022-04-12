@@ -1,0 +1,80 @@
+<h2>{{ "User.Add.Title" | translate }}</h2>
+<p>{{ "User.Add.Desc" | translate }}</p>
+
+<form [formGroup]="createUserform" (ngSubmit)="createUserform.valid && SaveUser()">
+  <div fxLayout="column">
+   
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "User.Add.Form.FirstName" | translate }}</mat-label>
+        <input matInput placeholder='{{ "User.Add.PlaceHolders.FirstName" | translate }}' formControlName="firstName" />
+      </mat-form-field>
+    
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.LastName" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Add.PlaceHolders.LastName" | translate }}' formControlName="lastName" />
+          
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.Username" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Add.PlaceHolders.Username" | translate }}' formControlName="userName" />
+          <mat-error *ngIf="checkError('userName', 'required')">{{ "User.Add.Errors.Required.Username" | translate }}</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.Password" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Add.PlaceHolders.Password" | translate }}' formControlName="password" />
+          <mat-error *ngIf="checkError('password', 'required')">{{ "User.Add.Errors.Required.Password" | translate }}</mat-error>
+        </mat-form-field>
+   
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.Mobile" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Add.PlaceHolders.Mobile" | translate }}' formControlName="mobile" />
+          <mat-error *ngIf="checkError('mobile', 'required')">{{ "User.Add.Errors.Required.Mobile" | translate }}</mat-error>
+          <mat-error *ngIf="checkError('mobile', 'pattern')">{{ "User.Add.Errors.Pattern.Mobile" | translate }}</mat-error>
+        </mat-form-field>
+        
+        <div class="mb-3">
+          <mat-checkbox formControlName="mobileConfirmed" color="primary">
+            {{ "User.Add.Form.MobileConfirmed" | translate }}</mat-checkbox>
+        </div>
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.Email" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Add.PlaceHolders.Email" | translate }}' formControlName="email" />
+        </mat-form-field>
+     
+        <div class="mb-3">
+          <mat-checkbox formControlName="emailConfirmed" color="primary" >
+            {{ "User.Add.Form.EmailConfirmed" | translate }}
+          </mat-checkbox>
+        </div>
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Add.Form.Roles" | translate }}</mat-label>
+          <mat-select formControlName="roles" multiple>
+            <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="mb-3">
+          <mat-checkbox formControlName="isBlock" color="primary">
+            {{ "User.Add.Form.Block" | translate }}
+          </mat-checkbox>
+        </div>   
+    <div class="mb-3">
+      <button type="submit" mat-raised-button color="primary" class="me-2" [disabled]="isProcessing">
+        <mat-icon>save</mat-icon>
+        {{ "User.Add.Buttons.Save" | translate }}</button>
+      <button type="button" mat-raised-button routerLink="/users">
+        <mat-icon>arrow_back</mat-icon>
+        {{ "User.Add.Buttons.Return" | translate }}</button>
+    </div>
+ 
+    <div class="mt-2" *ngIf="isProcessing" >
+      <span>{{ "Global.Processing" | translate }} </span>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
+</form>

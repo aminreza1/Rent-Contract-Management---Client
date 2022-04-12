@@ -1,0 +1,6 @@
+.add-rent-table {
+    border: 2px solid #9a9a9a;
+    max-height: 295px; 
+    overflow-y: auto;
+    border-radius: 5px;
+}

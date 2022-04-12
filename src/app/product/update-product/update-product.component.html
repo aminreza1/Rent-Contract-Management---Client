@@ -1,0 +1,64 @@
+<h2>{{ "Product.Edit.Title" | translate }}</h2>
+<p>{{ "Product.Edit.Desc" | translate }}</p>
+<p>{{ "Product.Edit.Info" | translate }} <span style="font-weight: 500;">{{productName}}</span></p>
+
+
+<form [formGroup]="updateProductform" (ngSubmit)="updateProductform.valid && UpdateProduct()">
+  <div fxLayout="column">
+  
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "Product.Edit.Form.Name" | translate }}</mat-label>
+        <input matInput placeholder='{{ "Product.Edit.PlaceHolders.Name" | translate }}' formControlName="productName" />
+        <mat-error *ngIf="checkError('productName', 'required')">
+          {{ "Product.Edit.Errors.Required.Name" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "Product.Edit.Form.Code" | translate }}</mat-label>
+        <input matInput placeholder='{{ "Product.Edit.PlaceHolders.Code" | translate }}' formControlName="productCode" />
+        <mat-error *ngIf="checkError('productCode', 'required')">
+          {{ "Product.Edit.Errors.Required.Code" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "Product.Edit.Form.Price" | translate }}</mat-label>
+        <input matInput placeholder='{{ "Product.Edit.PlaceHolders.Price" | translate }}' formControlName="rentPrice">
+        <mat-error *ngIf="checkError('rentPrice', 'required')">
+          {{ "Product.Edit.Errors.Required.Price" | translate }}
+        </mat-error>
+        <mat-error *ngIf="checkError('rentPrice', 'pattern')">
+          {{ "Product.Edit.Errors.Pattern.Price" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "Product.Edit.Form.Unit" | translate }}</mat-label>
+        <mat-select formControlName="rentUnit">
+          <mat-option value="0">{{ "Product.RentUnits.Hourly" | translate }}</mat-option>
+          <mat-option value="1">{{ "Product.RentUnits.Daily" | translate }}</mat-option>
+          <mat-option value="2">{{ "Product.RentUnits.Weekly" | translate }}</mat-option>
+          <mat-option value="3">{{ "Product.RentUnits.Monthly" | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div class="mb-3">
+      <button type="submit" mat-raised-button color="primary" class="me-2" [disabled]="isProcessing">
+        <mat-icon>save</mat-icon>
+        {{ "Product.Edit.Buttons.Save" | translate }}</button>
+      <button type="button" mat-raised-button routerLink="/products">
+        <mat-icon>arrow_back</mat-icon>
+        {{ "Product.Edit.Buttons.Return" | translate }}</button>
+    </div>
+  
+    <div class="mt-2" *ngIf="isProcessing">
+      <span>{{ "Global.Processing" | translate }}  </span>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+
+  </div>
+</form>
+
+
+

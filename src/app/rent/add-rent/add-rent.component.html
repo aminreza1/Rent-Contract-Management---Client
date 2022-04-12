@@ -1,0 +1,324 @@
+<form
+  [formGroup]="addRentContractform"
+  (ngSubmit)="
+    addRentContractform.valid &&
+      selectedProducts.length > 0 &&
+      selectedCustomer &&
+      SaveContract()
+  "
+>
+  <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+    <div fxLayout="column" class="m-1 p-1">
+      <h2>{{ "Rent.Add.Title" | translate }}</h2>
+      <p>{{ "Rent.Add.Desc" | translate }}</p>
+      <mat-form-field ngClass.gt-sm="input-auto-width" ngClass.lt-md="w-100p" appearance="outline">
+        <mat-label>{{ "Rent.Add.Form.CustomerName" | translate }}</mat-label>
+        <input
+          type="text"
+          placeholder='{{ "Rent.Add.PlaceHolders.CustomerName" | translate }}'
+          aria-label="Customer Name"
+          matInput
+          [formControl]="customerFormControl"
+          [matAutocomplete]="customerAuto"
+        />
+        <mat-icon
+          matSuffix
+          color="primary"
+          *ngIf="customerFormControl.value?.fullName"
+          >check_circle</mat-icon
+        >
+        <mat-autocomplete
+          #customerAuto="matAutocomplete"
+          (optionSelected)="onCustomerSelected($event)"
+          [displayWith]="getCustomerViewValue.bind(this)"
+        >
+          <mat-option
+            *ngFor="let customer of filteredCustomers | async"
+            [value]="customer"
+          >
+            {{ customer.fullName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-card class="mb-2" *ngIf="selectedCustomer">
+        <h3 class="color-primary">{{ "Rent.Add.Form.SelectedCustomer.Title" | translate }} :</h3>
+        <p>{{ "Rent.Add.Form.SelectedCustomer.Name" | translate }} : {{ selectedCustomer?.fullName }}</p>
+        <p>{{ "Rent.Add.Form.SelectedCustomer.Mobile" | translate }} : {{ selectedCustomer?.mobile }}</p>
+        <button mat-flat-button color="warn" (click)="onRemoveCustomer()">
+          {{ "Rent.Add.Form.SelectedCustomer.Buttons.Remove" | translate }}
+        </button>
+      </mat-card>
+
+      <mat-card class="mb-2" *ngIf="!selectedCustomer" style="display: flex">
+        <mat-icon class="color-red" style="margin: 3px 5px 0"
+          >error_outline</mat-icon
+        >
+        <p class="color-red">
+          {{ "Rent.Add.Messages.NotSelectedCustomer" | translate }}
+        </p>
+      </mat-card>
+
+      <mat-form-field appearance="outline" ngClass.gt-sm="input-auto-width" ngClass.lt-md="w-100p">
+        <mat-label>{{ "Rent.Add.Form.PredictedCost" | translate }}</mat-label>
+        <input
+          matInput
+          placeholder='{{ "Rent.Add.PlaceHolders.PredictedCost" | translate }}'
+          formControlName="predictedCost"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" ngClass.gt-sm="input-auto-width" ngClass.lt-md="w-100p">
+        <mat-label>{{ "Rent.Add.Form.Description" | translate }}</mat-label>
+        <textarea matInput rows="4" 
+        formControlName="description"
+        placeholder='{{ "Rent.Add.PlaceHolders.Description" | translate }}'></textarea>
+      </mat-form-field>
+
+      <!-- action button less than medium -->
+
+      <div fxHide.lt-md>
+        <mat-card class="mb-2" *ngIf="selectedProducts.length > 0">
+          <p class="color-primary">
+            {{ "Rent.Add.Messages.NumOfSelectedItem" | translate }} : {{ selectedProducts.length }} 
+          </p>
+        </mat-card>
+  
+        <mat-card
+          class="mb-2"
+          *ngIf="1 > selectedProducts.length"
+          style="display: flex"
+        >
+          <mat-icon class="color-red" style="margin: 3px 5px 0"
+            >error_outline</mat-icon
+          >
+          <p class="color-red">{{ "Rent.Add.Messages.NoSelectedRentItem" | translate }}</p>
+        </mat-card>
+  
+        <div class="mb-3">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="me-2"
+            [disabled]="isProcessing"
+          >
+            <mat-icon>save</mat-icon>
+            {{ "Rent.Add.Buttons.Save" | translate }}
+          </button>
+          <button type="button" mat-raised-button routerLink="/contracts/c-0">
+            <mat-icon>arrow_back</mat-icon>
+            {{ "Rent.Add.Buttons.Return" | translate }}
+          </button>
+        </div>
+  
+        <div class="mt-2" *ngIf="isProcessing">
+          <span>{{ "Global.Processing" | translate }} </span>
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+     
+
+    </div>
+
+    <!-- Section RIGHT -->
+
+    <div fxFlex class="p-1 m-1">
+      <h3 class="">{{ "Rent.Add.RentItems.Title" | translate }}</h3>
+      <p>{{ "Rent.Add.RentItems.Desc" | translate }} : {{ productLength }}</p>
+      <div>
+        <mat-form-field appearance="outline" class="w-100p w-max-400">
+          <mat-label>{{ "Rent.Add.RentItems.Form.Search" | translate }}</mat-label>
+          <input
+            matInput
+            #query
+            placeholder='{{ "Rent.Add.RentItems.PlaceHolders.Search" | translate }}'
+            (keyup)="onSearch(query)"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="mat-elevation-z2 add-rent-table">
+        <table
+          mat-table
+          matTableResponsive
+          [dataSource]="filteredProductsDataSource"
+          matSort
+          style="width: 100%"
+        >
+          <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.AddTable.Headers.ProductName" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.productName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.AddTable.Headers.PriceWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.priceWhenRenting | number: "1.0-2" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.AddTable.Headers.UnitWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.unitWhenRenting }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="onAddToSelectedList(element)"
+              >
+                <mat-icon>add_circle</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">
+              <span class="color-red" *ngIf="productLength == -1"
+                >{{ "Rent.Add.RentItems.Messages.ErrorInGetProducts" | translate }}</span
+              >
+              <span class="color-red" *ngIf="productLength == 0"
+                >{{ "Rent.Add.RentItems.Messages.ZeroProductLength" | translate }}</span
+              >
+              <span class="color-blue" *ngIf="productLength > 0"
+                >{{ "Rent.Add.RentItems.Messages.NoResultSearch" | translate }}</span
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <h4 class="mt-3 mb-3">{{ "Rent.Add.RentItems.SelectedTable.Title" | translate }} :</h4>
+      <div class="mat-elevation-z2 add-rent-table">
+        <table
+          mat-table
+          matTableResponsive
+          [dataSource]="selectedProductsDataSource"
+          matSort
+          style="width: 100%"
+        >
+          <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.SelectedTable.Headers.ProductName" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.productName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.SelectedTable.Headers.PriceWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.priceWhenRenting | number: "1.0-2" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Add.RentItems.SelectedTable.Headers.UnitWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.unitWhenRenting }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="onRemoveFromSelectedList(element)"
+              >
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">
+              <span class="color-red">{{ "Rent.Add.RentItems.Messages.EmptyRentItemInTable" | translate }}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+        <!-- action button less than medium -->
+      
+        <div fxHide.gt-sm>
+          <mat-card class="mt-3 mb-3" *ngIf="selectedProducts.length > 0">
+            <p class="color-primary">
+              {{ "Rent.Add.Messages.NumOfSelectedItem" | translate }} : {{ selectedProducts.length }} 
+            </p>
+          </mat-card>
+    
+          <mat-card
+            class="mt-3 mb-3"
+            *ngIf="1 > selectedProducts.length"
+            style="display: flex"
+          >
+            <mat-icon class="color-red" style="margin: 3px 5px 0"
+              >error_outline</mat-icon
+            >
+            <p class="color-red">{{ "Rent.Add.Messages.NoSelectedRentItem" | translate }}</p>
+          </mat-card>
+    
+          <div class="mb-3">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              class="me-2"
+              [disabled]="isProcessing"
+            >
+              <mat-icon>save</mat-icon>
+              {{ "Rent.Add.Buttons.Save" | translate }}
+            </button>
+            <button type="button" mat-raised-button routerLink="/contracts/c-0">
+              <mat-icon>arrow_back</mat-icon>
+              {{ "Rent.Add.Buttons.Return" | translate }}
+            </button>
+          </div>
+    
+          <div class="mt-2" *ngIf="isProcessing">
+            <span>{{ "Global.Processing" | translate }} </span>
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+</form>

@@ -1,0 +1,234 @@
+<h2>{{ "Rent.Edit.Title" | translate }}</h2>
+<p>{{ "Rent.Edit.Desc" | translate }}</p>
+<button type="button" mat-raised-button routerLink="/contracts/c-0">
+  <mat-icon>arrow_back</mat-icon>
+  {{ "Rent.Edit.Buttons.Return" | translate }}
+</button>
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" >
+  <div fxFlex="40" class="p-1 me-2">
+
+    <mat-card class="mt-2" fxHide.gt-sm>
+      <div class="" *ngIf="rentItem.isTerminated">
+        <p class="color-primary fw-6">{{ "Rent.Edit.Terminated" | translate }}</p>
+        <button type="button" mat-raised-button color="primary" class="mr-2">
+          <mat-icon>file_download</mat-icon>
+          {{ "Rent.Edit.Buttons.Export" | translate }}
+        </button>
+        
+      </div>
+       
+      <div class="p-1" *ngIf="!rentItem.isTerminated">
+        <p>{{ "Rent.Edit.OperationTitle" | translate }} :</p>
+        <form
+          [formGroup]="terminateContractForm"
+          (ngSubmit)="
+            !rentItem.isTerminated &&
+              terminateContractForm.valid &&
+              beforeTerminateContract()">
+          <div fxLayout="column">
+            <div>
+              <mat-form-field appearance="outline" class="w-300">
+                <mat-label>{{ "Rent.Edit.Form.RecievedCost" | translate }}</mat-label>
+                <input
+                  matInput
+                  placeholder='{{ "Rent.Edit.PlaceHolders.RecievedCost" | translate }}'
+                  formControlName="finalCost"
+                  style="font-size: 20px"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="mb-3">
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary"
+              >
+              {{ "Rent.Edit.Buttons.Terminate" | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+
+    <h3>{{ "Rent.Edit.InfoTitle" | translate }}</h3>
+    <table class="table1">
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.CustomerName" | translate }} :</td>
+        <td>{{ rentItem.customerFullName }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.CustomerPhone" | translate }} :</td>
+        <td>{{ rentItem.customerMobileNumber }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.RentDateTime" | translate }} :</td>
+        <td>{{ rentItem.rentDateTime | dateLocale:localService.get() }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.ReturnDateTime" | translate }} :</td>
+        <td>{{ rentItem.returnDateTime ? (rentItem.returnDateTime | dateLocale:localService.get()) : "-" }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.PredictedCost" | translate }} :</td>
+        <td>{{ rentItem.predictedCost | number: "1.0-2" }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.CalculatedCost" | translate }} :</td>
+        <td>{{ rentItem.calculatedCost | number: "1.0-2" }}</td>
+      </tr>
+      <tr>
+        <td>{{ "Rent.Edit.InfoTable.Headers.RecievedCost" | translate }} :</td>
+        <td>{{ rentItem.finalCost | number: "1.0-2" }}</td>
+      </tr>
+     
+    </table>
+
+    <mat-card class="mt-2" fxHide.lt-md>
+      <div class="" *ngIf="rentItem.isTerminated">
+        <p class="color-primary fw-6">{{ "Rent.Edit.Terminated" | translate }}</p>
+        <button type="button" mat-raised-button color="primary" class="mr-2">
+          <mat-icon>file_download</mat-icon>
+          {{ "Rent.Edit.Buttons.Export" | translate }}
+        </button>
+        
+      </div>
+       
+      <div class="p-1" *ngIf="!rentItem.isTerminated">
+        <p>{{ "Rent.Edit.OperationTitle" | translate }} :</p>
+        <form
+          [formGroup]="terminateContractForm"
+          (ngSubmit)="
+            !rentItem.isTerminated &&
+              terminateContractForm.valid &&
+              beforeTerminateContract()
+          "
+        >
+          <div fxLayout="column">
+            <div>
+              <mat-form-field appearance="outline" class="w-300">
+                <mat-label>{{ "Rent.Edit.Form.RecievedCost" | translate }}</mat-label>
+                <input
+                  matInput
+                  placeholder='{{ "Rent.Edit.PlaceHolders.RecievedCost" | translate }}'
+                  formControlName="finalCost"
+                  style="font-size: 20px"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="mb-3">
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary">
+              {{ "Rent.Edit.Buttons.Terminate" | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+
+    <div *ngIf="rentItem.description" class="mt-2 p-2 card-bg">
+      <p>{{ "Rent.Edit.DescriptionTitle" | translate }} :</p>
+      <p>{{ rentItem.description }}</p>
+    </div>
+    
+  </div>
+  <div fxFlex class="p-1">
+    <h3 class="">{{ "Rent.Edit.ItemsTitle" | translate }}</h3> 
+    <table
+          mat-table
+          matTableResponsive
+          [dataSource]="rentItem.items"
+          style="width: 100%"
+        >
+          <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.ProductName" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.productName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.PriceWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.priceWhenRenting | number: "1.0-2" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitWhenRenting">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.UnitWhenRenting" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.unitWhenRenting }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="priceNow">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.PriceNow" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.rentPrice | number: "1.0-2" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitNow">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.UnitNow" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.rentUnitText }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="calculatedCost">
+            <th mat-header-cell *matHeaderCellDef>{{ "Rent.Edit.ItemsTable.Headers.CalculatedCost" | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.calculatedCost | number: "1.0-2" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn" *ngIf="!rentItem.isTerminated">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="rentItemsTableColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: rentItemsTableColumns"></tr>       
+        </table>
+<table class="table1">
+  <tr>
+    <td colspan="5" style="font-weight: 500">{{ "Rent.Edit.ItemsTable.TotalCost" | translate }} :</td>
+    <td colspan="3" style="font-size: 20px">
+      {{ rentItem.calculatedCost | number: "1.0-2" }} <span class="fs-10p">{{ "Global.Rials" | translate }}</span>
+    </td>
+  </tr>
+  <tr *ngIf="rentItem.isTerminated">
+    <td colspan="5" style="font-weight: 500">{{ "Rent.Edit.ItemsTable.Discount" | translate }} :</td>
+    <td colspan="3" style="font-size: 20px">
+      {{ lessThanZeroSetZero(rentItem.calculatedCost - rentItem.finalCost) | number: "1.0-2" }} <span class="fs-10p">{{ "Global.Rials" | translate }}</span>
+    </td>
+  </tr>
+  <tr *ngIf="rentItem.isTerminated">
+    <td colspan="5" style="font-weight: 500">{{ "Rent.Edit.ItemsTable.TotalRecieved" | translate }} :</td>
+    <td colspan="3" style="font-size: 20px">
+      {{ rentItem.finalCost | number: "1.0-2" }} <span class="fs-10p">{{ "Global.Rials" | translate }}</span>
+    </td>
+  </tr>
+  <tr *ngIf="lessThanZero(rentItem.calculatedCost - rentItem.finalCost)"> 
+    <td colspan="8">
+      <p class="color-red mt-2">{{ "Rent.Edit.ItemsTable.Messages.TotalMoreThanCalculated" | translate }}</p>
+    </td>
+  </tr>
+</table>
+       
+  </div>
+</div>

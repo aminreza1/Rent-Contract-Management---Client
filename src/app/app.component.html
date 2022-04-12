@@ -1,0 +1,112 @@
+<mat-toolbar color="primary" style="height: 64px !important;">
+  <button
+  *ngIf="isLogin"
+    mat-stroked-button
+    (click)="toggleSidebar()"
+    style="margin: 0 !important"
+  >
+    <mat-icon *ngIf="!sidebarOpened">menu</mat-icon>
+    <mat-icon *ngIf="sidebarOpened">close</mat-icon>
+    <span>{{ "Layout.Toolbar.Menu" | translate }}</span>
+  </button>
+
+  <span class="ms-2" fxHide.lt-md>{{ "Layout.Toolbar.Title" | translate }}</span>
+  <span class="ms-2" fxHide.gt-sm>{{  "Layout.Toolbar.TitleMobile" | translate }}</span>
+
+  <span class="row-spacer"></span>
+  <button
+    fxHide.lt-sm
+    mat-stroked-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>account_circle</mat-icon>
+    <span class="ms-1">{{ userName }}</span>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container [dir]="direction" autosize>
+  <mat-drawer
+    [mode]="sidebarMode"
+    [opened]="sidebarOpened"
+    class="p-1"
+    *ngIf="isLogin"
+    style="min-width: 200px"
+    (closed)="onSideNavClose()"
+  >
+    <mat-nav-list>
+      <mat-list-item (click)="goToRoute('/')">
+        <mat-icon mat-list-icon color="primary">home</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Dashboard" | translate }}</h4>
+      </mat-list-item>
+
+      <mat-list-item (click)="goToRoute('/contracts/c-0')" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">gavel</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Contracts" | translate }}</h4>
+      </mat-list-item>
+
+      <mat-list-item (click)="goToRoute('/products')" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">inventory_2</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Products" | translate }}</h4>
+      </mat-list-item>
+
+      <mat-list-item (click)="goToRoute('/customers')" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">groups</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Customers" | translate }}</h4>
+      </mat-list-item>
+
+      <mat-list-item (click)="goToRoute('/users')" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">person</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Users" | translate }}</h4>
+      </mat-list-item>
+
+      <mat-list-item (click)="goToRoute('/settings')" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">settings</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Settings" | translate }}</h4>
+      </mat-list-item>
+
+      
+
+      <mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon mat-list-icon color="primary">translate</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Language" | translate }}</h4>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="changeLang('en')">
+            {{ "Layout.SideNav.English" | translate }}
+          </button>
+          <button mat-menu-item (click)="changeLang('fa')">
+            {{ "Layout.SideNav.Persian" | translate }}
+          </button>
+        </mat-menu>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary"
+          >dark_mode</mat-icon
+        >
+        <mat-slide-toggle
+          color="primary"
+          [(ngModel)]="nightMode"
+          (change)="onNightMode()"
+          >&nbsp;{{ "Layout.SideNav.Dark" | translate }}</mat-slide-toggle
+        >
+      </mat-list-item>
+      <mat-list-item (click)="onLogout()" *ngIf="isLogin">
+        <mat-icon mat-list-icon color="primary">logout</mat-icon>
+        <h4 mat-line>{{ "Layout.SideNav.Logout" | translate }}</h4>
+      </mat-list-item>
+    </mat-nav-list>
+    <button
+      fxHide.gt-xs
+      mat-stroked-button
+      class="user-icon-sidebar"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>account_circle</mat-icon>
+      <span class="ms-1">{{ userName }}</span>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content class="p-4">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

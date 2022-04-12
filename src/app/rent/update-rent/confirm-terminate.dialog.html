@@ -1,0 +1,11 @@
+<h1 mat-dialog-title> {{ "Dialogs.ConfirmTerminate.Title" | translate }} </h1>
+<div mat-dialog-content>
+  <p>{{ "Dialogs.ConfirmTerminate.Desc.CustomerName" | translate }} : <span class="fw-5">{{data.customer}}</span></p>
+  <p>{{ "Dialogs.ConfirmTerminate.Desc.RecievedPrice" | translate }} : 
+    <span class="fw-5 color-red">{{data.cost}}</span> {{ "Global.Rials" | translate }}</p>
+  <p>{{ "Dialogs.ConfirmTerminate.Desc.ConfirmText" | translate }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]='true'>{{ "Dialogs.ConfirmTerminate.Buttons.Yes" | translate }}</button>
+  <button mat-button [mat-dialog-close]='false' cdkFocusInitial>{{ "Dialogs.ConfirmTerminate.Buttons.No" | translate }}</button>
+</div>

@@ -1,0 +1,27 @@
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td,
+th {
+  border: 0.5px solid #424242;
+  padding: 0.5rem;
+  text-align: left;
+}
+th {
+  font-weight: 500;
+}
+
+body[class*="theme-light"] tr.rent-item-header-row>th{background-color: rgb(238, 238, 238)}
+body[class*="theme-dark"] tr.rent-item-header-row>th{background-color: #424242}
+
+table.table-1 td:first-child {
+  background-color: #424242;
+  min-width: 150px;
+  vertical-align: top;
+  font-weight: 400;
+}
+table.table-1 td:last-child {
+  font-weight: 400;
+} */
+

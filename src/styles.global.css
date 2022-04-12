@@ -1,0 +1,30 @@
+.w-100p{width: 100% !important}
+.w-300{width: 300px !important}
+.w-400{width: 400px !important}
+.w-max-400{max-width: 400px !important}
+
+.input-auto-width{
+    width: 100% !important;
+    max-width: 400px !important;
+}
+
+
+.fs-10p{font-size: 10px !important;}
+.fw-5{font-weight: 500 !important}
+.fw-6{font-weight: 600 !important}
+
+.pointer {
+    cursor: pointer !important;
+}
+.text-center{
+text-align: center !important;
+}
+.row-spacer {
+    flex: 1 1 auto;
+  }
+
+@media (min-width: 920px) {
+    .text-center-gt-md{
+        text-align: center !important;
+        }
+}

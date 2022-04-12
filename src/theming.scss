@@ -1,0 +1,338 @@
+@import "~@angular/material/theming";
+@include mat-core();
+/* ============= MY Pallete ====================== */
+
+$md-seagrean: (
+    50 : #e6f1eb,
+    100 : #c0dccd,
+    200 : #97c5ab,
+    300 : #6dae89,
+    400 : #4d9c70,
+    500 : #2e8b57,
+    600 : #29834f,
+    700 : #237846,
+    800 : #1d6e3c,
+    900 : #125b2c,
+    A100 : #93ffb5,
+    A200 : #60ff92,
+    A400 : #2dff6f,
+    A700 : #14ff5d,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-steelblue: (
+    50 : #e9f0f6,
+    100 : #c8dae9,
+    200 : #a3c1da,
+    300 : #7ea8cb,
+    400 : #6295bf,
+    500 : #4682b4,
+    600 : #3f7aad,
+    700 : #376fa4,
+    800 : #2f659c,
+    900 : #20528c,
+    A100 : #c9e0ff,
+    A200 : #96c3ff,
+    A400 : #63a7ff,
+    A700 : #4998ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-indianred: (
+    50 : #f9ebeb,
+    100 : #f0cece,
+    200 : #e6aeae,
+    300 : #dc8d8d,
+    400 : #d57474,
+    500 : #cd5c5c,
+    600 : #c85454,
+    700 : #c14a4a,
+    800 : #ba4141,
+    900 : #ae3030,
+    A100 : #fff4f4,
+    A200 : #ffc1c1,
+    A400 : #ff8e8e,
+    A700 : #ff7474,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* ======== Angular material custom themes ======== */
+
+// Active Colors
+$my-custom-primary-color-dark: $md-steelblue;
+$my-custom-primary-color-light: $md-steelblue;
+
+$my-custom-accent-color-dark: $md-seagrean;
+$my-custom-accent-color-light: $md-seagrean;
+
+$my-custom-warn-color-dark: $md-indianred;
+$my-custom-warn-color-light: $md-indianred;
+
+$my-custom-disabled-color: $mat-gray;
+
+// mat Palette
+$my-custom-light-primary: mat-palette($my-custom-primary-color-light, 800);
+$my-custom-light-accent: mat-palette($my-custom-accent-color-light, 800);
+$my-custom-light-warn: mat-palette($my-custom-warn-color-light, 600);
+
+$my-custom-light-theme: mat-light-theme(
+  $my-custom-light-primary,
+  $my-custom-light-accent,
+  $my-custom-light-warn
+);
+
+$my-custom-dark-primary: mat-palette($my-custom-primary-color-dark, 500);
+$my-custom-dark-accent: mat-palette($my-custom-accent-color-dark, 400);
+$my-custom-dark-warn: mat-palette($my-custom-warn-color-dark, 400);
+
+$my-custom-dark-theme: mat-dark-theme(
+  $my-custom-dark-primary,
+  $my-custom-dark-accent,
+  $my-custom-dark-warn
+);
+
+.theme-light {
+  @include angular-material-theme($my-custom-light-theme);
+}
+.theme-dark {
+  @include angular-material-theme($my-custom-dark-theme);
+};
+// End Palette
+//////////////
+
+body[class*="theme-dark"] a {
+  color: mat-color($my-custom-accent-color-dark, 300);
+  text-decoration: none;
+}
+body[class*="theme-light"] a {
+  color: mat-color($my-custom-accent-color-light, 700);
+  text-decoration: none;
+}
+
+
+
+body[class*="theme-dark"] .color-primary {
+  color: mat-color($my-custom-primary-color-dark, 300);
+}
+body[class*="theme-light"] .color-primary {
+  color: mat-color($my-custom-primary-color-light, 700);
+}
+
+body[class*="theme-dark"] .color-accent {
+  color: mat-color($my-custom-accent-color-dark, 300);
+}
+body[class*="theme-light"] .color-accent {
+  color: mat-color($my-custom-accent-color-light, 700);
+}
+
+body[class*="theme-dark"] .color-warn {
+  color: mat-color($my-custom-warn-color-dark, 300);
+}
+body[class*="theme-light"] .color-warn {
+  color: mat-color($my-custom-warn-color-light, 700);
+}
+
+
+body[class*="theme-dark"] .color-red {
+  color: mat-color($mat-red, 300);
+}
+body[class*="theme-light"] .color-red {
+  color: mat-color($mat-red, 700);
+}
+
+body[class*="theme-dark"] .color-blue {
+  color: mat-color($mat-blue, 300);
+}
+body[class*="theme-light"] .color-blue {
+  color: mat-color($mat-blue, 700);
+}
+
+body[class*="theme-dark"] .color-green {
+  color: mat-color($mat-green, 300);
+}
+body[class*="theme-light"] .color-green {
+  color: mat-color($mat-green, 700);
+}
+
+.color-disable {
+  color: mat-color($my-custom-disabled-color, 400);
+}
+
+body[class*="theme-light"] .card-bg{background-color: rgb(238, 238, 238)}
+body[class*="theme-dark"] .card-bg{background-color: #424242}
+
+/* TABLE */
+/* TABLE */
+
+table.table1 {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+body[class*="theme-light"] table.table1 {border: 1px solid #d9d9d9}
+body[class*="theme-dark"] table.table1 {border: 1px solid #545454;}
+
+html[dir=ltr] table.table1 th,
+html[dir=ltr] table.table1 td {
+  text-align: left;
+  padding: 8px;
+  font-size: 14px;
+}
+html[dir=rtl] table.table1 th,
+html[dir=rtl] table.table1 td {
+  text-align: right;
+  padding: 8px;
+  font-size: 14px;
+}
+
+body[class*="theme-light"] table.table1 tr:nth-child(even){background-color: rgb(238, 238, 238)}
+body[class*="theme-dark"] table.table1 tr:nth-child(even){background-color: #424242}
+
+/* TABLE */
+/* TABLE */
+
+.message-error {
+  color: mat-color($mat-pink, 800);
+  background-color: mat-color($mat-pink, 50);
+  padding: 10px;
+}
+.message-success {
+  color: mat-color($mat-green, 800);
+  background-color: mat-color($mat-green, 50);
+  padding: 10px;
+}
+
+// Spacing /////////////////////////////
+$def-space: 5px;
+
+p{  margin: $def-space 0 !important;}
+h1{  margin: $def-space*2 0 !important;}
+h2{  margin: $def-space*1.8 0 !important;}
+h3{  margin: $def-space*1.6 0 !important;}
+h4{  margin: $def-space*1.4 0 !important;}
+h5{  margin: $def-space*1.2 0 !important;}
+h6{  margin: $def-space 0 !important;}
+button{  margin: $def-space 0 !important;}
+
+.m-0 {  margin: 0 !important;}
+.p-0 {  padding: 0 !important;}
+.m-1 {  margin: $def-space !important;}
+.p-1 {  padding: $def-space !important;}
+.m-2 {  margin: $def-space * 2 !important;}
+.p-2 {  padding: $def-space * 2 !important;}
+.m-3 {  margin: $def-space * 2.5 !important;}
+.p-3 {  padding: $def-space * 2.5 !important;}
+.m-4 {  margin: $def-space * 3.2 !important;}
+.p-4 {  padding: $def-space * 3.2 !important;}
+
+html[dir="ltr"] .ps-1 {  padding-left: $def-space !important;}
+html[dir="rtl"] .ps-1 {  padding-right: $def-space !important;}
+html[dir="ltr"] .pe-1 {  padding-right: $def-space !important;}
+html[dir="rtl"] .pe-1 {  padding-left: $def-space !important;}
+.pt-1 {  padding-top: $def-space !important;}
+.pb-1 {  padding-bottom: $def-space !important;}
+html[dir="ltr"] .ms-1 {  margin-left: $def-space !important;}
+html[dir="rtl"] .ms-1 {  margin-right: $def-space !important;}
+html[dir="ltr"] .me-1 {  margin-right: $def-space !important;}
+html[dir="rtl"] .me-1 {  margin-left: $def-space !important;}
+.mt-1 {  margin-top: $def-space !important;}
+.mb-1 {  margin-bottom: $def-space !important;}
+
+
+html[dir="ltr"] .ps-2 {  padding-left: $def-space * 2 !important;}
+html[dir="rtl"] .ps-2 {  padding-right: $def-space * 2 !important;}
+html[dir="ltr"] .pe-2 {  padding-right: $def-space * 2 !important;}
+html[dir="rtl"] .pe-2 {  padding-left: $def-space * 2 !important;}
+.pt-2 {  padding-top: $def-space * 2 !important;}
+.pb-2 {  padding-bottom: $def-space * 2 !important;}
+html[dir="ltr"] .ms-2 {  margin-left: $def-space * 2 !important;}
+html[dir="rtl"] .ms-2 {  margin-right: $def-space * 2 !important;}
+html[dir="ltr"] .me-2 {  margin-right: $def-space * 2 !important;}
+html[dir="rtl"] .me-2 {  margin-left: $def-space * 2 !important;}
+.mt-2 {  margin-top: $def-space * 2 !important;}
+.mb-2 {  margin-bottom: $def-space * 2 !important;}
+
+html[dir="ltr"] .ps-3 {  padding-left: $def-space * 3 !important;}
+html[dir="rtl"] .ps-3 {  padding-right: $def-space * 3 !important;}
+html[dir="ltr"] .pe-3 {  padding-right: $def-space * 3 !important;}
+html[dir="rtl"] .pe-3 {  padding-left: $def-space * 3 !important;}
+.pt-3 {  padding-top: $def-space * 3 !important;}
+.pb-3 {  padding-bottom: $def-space * 3 !important;}
+html[dir="ltr"] .ms-3 {  margin-left: $def-space * 3 !important;}
+html[dir="rtl"] .ms-3 {  margin-right: $def-space * 3 !important;}
+html[dir="ltr"] .me-3 {  margin-right: $def-space * 3 !important;}
+html[dir="rtl"] .me-3 {  margin-left: $def-space * 3 !important;}
+.mt-3 {  margin-top: $def-space * 3 !important;}
+.mb-3 {  margin-bottom: $def-space * 3 !important;}
+
+.title{
+  padding: 5px 10px;
+  font-size: 17px;
+  font-weight: 400
+}
+body[class*="theme-light"] .title-primary{
+  border-bottom: 2px solid mat-color($my-custom-primary-color-light, 800);
+}
+body[class*="theme-dark"] .title-primary{
+  border-bottom: 2px solid mat-color($my-custom-primary-color-dark, 500);
+}
+
+// Material Table Responsive Directive
+@import './app/infrastructure/directives/mat-table-responsive/mat-table-responsive.directive';
+@media (max-width: 920px) {
+body[class*="theme-dark"] .mat-table[matTableResponsive] .mat-row:not(:last-of-type) td:last-of-type {
+  border-bottom: 0.5rem solid mat-color($mat-gray, 700);
+}
+body[class*="theme-light"] .mat-table[matTableResponsive] .mat-row:not(:last-of-type) td:last-of-type {
+  border-bottom: 0.5rem solid mat-color($mat-gray, 200);;
+}
+}
+
+
+// ///////////////

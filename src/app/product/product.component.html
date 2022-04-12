@@ -1,0 +1,95 @@
+<h2>{{ "Product.Title" | translate }}</h2>
+<p>{{ "Product.Desc" | translate }}</p>
+
+<div class="pb-2">
+  <button
+    type="button"
+    mat-raised-button
+    color="accent"
+    [disabled]="loader"
+    routerLink="/product/create"
+  >
+    <mat-icon>add</mat-icon>
+    {{ "Product.Buttons.Add" | translate }}
+  </button>
+</div>
+
+<div *ngIf="loader">
+  <p> {{ "Global.LoaderText" | translate }}</p>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<!-- <div class="mat-elevation-z2" *ngIf="!loader"> -->
+<div class="mat-elevation-z2" [hidden]="loader">
+  <table mat-table matSort matTableResponsive [dataSource]="productDataSource" class="w-100p">
+    <ng-container matColumnDef="#" >
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let i = index">
+        {{ pageSize * pageIndex + i + 1 }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="code" >
+      <th mat-header-cell *matHeaderCellDef>{{ "Product.Table.Headers.Code" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "Product.Table.Headers.Name" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="rentPrice">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "Product.Table.Headers.Price" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.rentPrice | number: "1.0-2" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentUnitText">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "Product.Table.Headers.Unit" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.rentUnitText }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="minUnitForRent">
+      <th mat-header-cell *matHeaderCellDef>{{ "Product.Table.Headers.MinUFR" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.minUnitForRent }}</td>
+    </ng-container>
+    <ng-container matColumnDef="maxUnitForRent">
+      <th mat-header-cell *matHeaderCellDef>{{ "Product.Table.Headers.MaxUFR" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.maxUnitForRent }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="operations">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['../product/update', element.id]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          [routerLink]="['../product/update', element.id]"
+        >
+          <mat-icon>do_disturb_on</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPaging($event)"
+  >
+  </mat-paginator>
+</div>

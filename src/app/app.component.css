@@ -1,0 +1,26 @@
+/* .sidenav-container{
+  width: 150px;
+  border-right: 2px solid #ebe5e5;
+}
+*/
+mat-drawer-container{
+  height: calc(100vh - 64px) !important;
+}
+
+mat-drawer-content{
+  height: calc(100vh - 94px) !important;
+} 
+
+
+
+.nav-user-name{
+  font-size: 17px;
+}
+
+.user-icon-sidebar{
+  position: absolute;
+  bottom: 10px;
+  left:25px;
+
+
+}

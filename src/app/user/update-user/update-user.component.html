@@ -1,0 +1,83 @@
+<h2>{{ "User.Edit.Title" | translate }} : {{userName}}</h2>
+<p>{{ "User.Edit.Desc" | translate }}</p>
+
+<form [formGroup]="UpdateUserform" (ngSubmit)="UpdateUserform.valid && SaveChanges()">
+  <div fxLayout="column">
+   
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "User.Edit.Form.FirstName" | translate }}</mat-label>
+        <input matInput placeholder='{{ "User.Edit.PlaceHolders.FirstName" | translate }}' formControlName="firstName" />
+      </mat-form-field>
+    
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.LastName" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Edit.PlaceHolders.LastName" | translate }}' formControlName="lastName" />
+          
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.Username" | translate }}</mat-label>
+          <input matInput formControlName="userName" [readonly]="true" />
+          <mat-error *ngIf="checkError('userName', 'required')">{{ "User.Edit.Errors.Required.Username" | translate }}</mat-error>
+        </mat-form-field>
+    
+        <div class="mb-3">
+            <mat-checkbox formControlName="changeForcePassword" color="primary" (click)="onChangeForcePassword()">
+              {{ "User.Edit.Form.ChangePass" | translate }}
+            </mat-checkbox>
+          </div>
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.Password" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Edit.PlaceHolders.Password" | translate }}' formControlName="password" [required]="UpdateUserform.value.changeForcePassword"/>
+          <mat-error *ngIf="checkError('password', 'required')">{{ "User.Edit.Errors.Required.Password" | translate }}</mat-error>
+        </mat-form-field>
+   
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.Mobile" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Edit.PlaceHolders.Mobile" | translate }}' formControlName="mobile" />
+          <mat-error *ngIf="checkError('mobile', 'required')">{{ "User.Edit.Errors.Required.Mobile" | translate }}</mat-error>
+          <mat-error *ngIf="checkError('mobile', 'pattern')">{{ "User.Edit.Errors.Pattern.Mobile" | translate }}</mat-error>
+        </mat-form-field>
+        
+        <div class="mb-3">
+          <mat-checkbox formControlName="mobileConfirmed" color="primary">{{ "User.Edit.Form.MobileConfirmed" | translate }}</mat-checkbox>
+        </div>
+    
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.Email" | translate }}</mat-label>
+          <input matInput placeholder='{{ "User.Edit.PlaceHolders.Email" | translate }}' formControlName="email" />
+        </mat-form-field>
+     
+        <div class="mb-3">
+          <mat-checkbox formControlName="emailConfirmed" color="primary" >
+            {{ "User.Edit.Form.EmailConfirmed" | translate }}</mat-checkbox>
+        </div>
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "User.Edit.Form.Roles" | translate }}</mat-label>
+          <mat-select formControlName="roles" multiple>
+            <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="mb-3">
+          <mat-checkbox formControlName="isBlock" color="primary">
+            {{ "User.Edit.Form.Block" | translate }}</mat-checkbox>
+        </div>
+        
+    <div class="mb-3">
+      <button type="submit" mat-raised-button color="primary" class="me-2" [disabled]="isProcessing">
+        <mat-icon>save</mat-icon>
+        {{ "User.Edit.Buttons.Save" | translate }}</button>
+      <button type="button" mat-raised-button routerLink="/users">
+        <mat-icon>arrow_back</mat-icon>
+        {{ "User.Edit.Buttons.Return" | translate }}</button>
+    </div>
+  
+    <div class="mt-2" *ngIf="isProcessing" >
+      <span>{{ "Global.Processing" | translate }} </span>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,55 @@
+<h2>{{ "Customer.Edit.Title" | translate }}</h2>
+<p>{{ "Customer.Edit.Desc" | translate }}</p>
+
+<form [formGroup]="updateCustomerform" (ngSubmit)="updateCustomerform.valid && UpdateCustomer()">
+  <div fxLayout="column">
+   
+      <mat-form-field appearance="outline" class="input-auto-width">
+        <mat-label>{{ "Customer.Edit.Form.FirstName" | translate }}</mat-label>
+        <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.FirstName" | translate }}' formControlName="firstName" />
+      </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Customer.Edit.Form.LastName" | translate }}</mat-label>
+          <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.LastName" | translate }}' formControlName="lastName" />
+          <mat-error *ngIf="checkError('lastName', 'required')">{{ "Customer.Edit.Errors.Required.LastName" | translate }}</mat-error>
+        </mat-form-field>
+ 
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Customer.Edit.Form.NationalCode" | translate }}</mat-label>
+          <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.NationalCode" | translate }}' formControlName="nationalCode" />
+        </mat-form-field>
+   
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Customer.Edit.Form.Mobile" | translate }}</mat-label>
+          <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.Mobile" | translate }}' formControlName="mobile" />
+          <mat-error *ngIf="checkError('mobile', 'required')">{{ "Customer.Edit.Errors.Required.Mobile" | translate }}</mat-error>
+          <mat-error *ngIf="checkError('mobile', 'pattern')">{{ "Customer.Edit.Errors.Pattern.Mobile" | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Customer.Edit.Form.Phone" | translate }}</mat-label>
+          <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.Phone" | translate }}' formControlName="phone" />
+        </mat-form-field>
+ 
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Customer.Edit.Form.Address" | translate }}</mat-label>
+          <input matInput placeholder='{{ "Customer.Edit.PlaceHolders.Address" | translate }}' formControlName="address" />
+        </mat-form-field>
+
+    <div class="mb-3">
+      <button type="submit" mat-raised-button color="primary" class="me-2" [disabled]="isProcessing">
+        <mat-icon>save</mat-icon>
+        {{ "Customer.Edit.Buttons.Save" | translate }}</button>
+      <button type="button" mat-raised-button routerLink="/customers">
+        <mat-icon>arrow_back</mat-icon>{{ "Customer.Edit.Buttons.Return" | translate }}</button>
+        
+    </div>
+  
+    <div class="mt-2" *ngIf="isProcessing" >
+      <span>{{ "Global.Processing" | translate }} </span>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+    
+  </div>
+</form>

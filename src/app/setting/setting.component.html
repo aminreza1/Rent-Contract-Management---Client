@@ -1,0 +1,41 @@
+<h2>{{ "Setting.Title" | translate }}</h2>
+<p>{{ "Setting.Desc" | translate }}</p>
+
+<form [formGroup]="updateSettingform" (ngSubmit)="updateSettingform.valid && UpdateSettings()">
+    <div fxLayout="column">
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+          <mat-label>{{ "Setting.Form.Theme" | translate }}</mat-label>
+          <mat-select formControlName="theme">
+            <mat-option value="light">{{ "Setting.Themes.Light" | translate }}</mat-option>
+            <mat-option value="dark">{{ "Setting.Themes.Dark" | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-auto-width">
+            <mat-label>{{ "Setting.Form.Lang" | translate }}</mat-label>
+            <mat-select formControlName="language">
+              <mat-option value="en">{{ "Setting.Langs.En" | translate }}</mat-option>
+              <mat-option value="fa">{{ "Setting.Langs.Fa" | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-auto-width">
+            <mat-label>{{ "Setting.Form.Currency" | translate }}</mat-label>
+            <mat-select formControlName="currency">
+              <mat-option value="usd">{{ "Setting.Currencies.Usd" | translate }}</mat-option>
+              <mat-option value="gbp">{{ "Setting.Currencies.Gbp" | translate }}</mat-option>
+              <mat-option value="eur">{{ "Setting.Currencies.Eur" | translate }}</mat-option>
+              <mat-option value="irr">{{ "Setting.Currencies.Irr" | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+      <div class="mb-3">
+        <button type="submit" mat-raised-button color="primary" class="me-2">
+          <mat-icon>save</mat-icon>
+          {{ "Setting.Buttons.Save" | translate }}</button>
+      </div>
+    
+    </div>
+  </form>
+  

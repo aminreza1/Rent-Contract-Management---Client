@@ -1,0 +1,103 @@
+<h2>{{ "User.Title" | translate }}</h2>
+<p>{{ "User.Desc" | translate }}</p>
+
+<div class="pb-2">
+    <button
+      type="button"
+      mat-raised-button
+      color="accent"
+      [disabled]="loader"
+      routerLink="/user/create"
+    >
+      <mat-icon>add</mat-icon>
+      {{ "User.Buttons.Add" | translate }}
+    </button>
+  </div>
+  
+  <div *ngIf="loader">
+    <p>{{ "Global.LoaderText" | translate }}</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  
+  <div class="mat-elevation-z2" [hidden]="loader">
+    <table mat-table matSort matTableResponsive [dataSource]="userDataSource" class="w-100p">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let i = index">{{ (pageSize*pageIndex)+i+1 }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "User.Table.Headers.Username" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "User.Table.Headers.Name" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstName + ' ' + element.lastName }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="mobile">
+        <th mat-header-cell *matHeaderCellDef>{{ "User.Table.Headers.Mobile" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.mobile}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>{{ "User.Table.Headers.Email" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createDateTime">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ "User.Table.Headers.CreateDate" | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.createDateTime | dateLocale:localService.get()  }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef>{{ "User.Table.Headers.Roles" | translate }}</th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngFor="let role of element.roles;let i = index">
+                <span *ngIf="i!=0">,</span>
+                {{ role }}
+            </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isBlock">
+        <th mat-header-cell *matHeaderCellDef class="text-center-gt-md">{{ "User.Table.Headers.Active" | translate }}</th>
+        <td mat-cell *matCellDef="let element" class="text-center-gt-md">
+          <mat-icon *ngIf="!element.isBlock" color="accent">check_circle_outline</mat-icon>
+          <mat-icon *ngIf="element.isBlock" color="warn">highlight_off</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="primary"
+            [routerLink]="['../user/update', element.userName]"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          
+        </td>
+      </ng-container>
+  
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+    <mat-paginator
+      [length]="length"
+      [pageIndex]="pageIndex  "
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPaging($event)"
+    >
+    </mat-paginator>
+  </div>

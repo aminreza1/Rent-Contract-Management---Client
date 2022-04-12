@@ -1,0 +1,133 @@
+
+
+@font-face {
+  font-family: Vazir;
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/font/fa/samim/Samim-FD.eot");
+  src: url("/assets/font/fa/samim/Samim-FD.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("/assets/font/fa/samim/Samim-FD.woff2")
+      format("woff2"),
+      url("/assets/font/fa/samim/Samim-FD.woff")
+      format("woff"),
+      url("/assets/font/fa/samim/Samim-FD.ttf")
+      format("truetype");
+}
+@font-face {
+  font-family: Vazir;
+  font-style: normal;
+  font-weight: 500;
+  src: url("/assets/font/fa/samim/Samim-Bold-FD.eot");
+  src: url("/assets/font/fa/samim/Samim-Bold-FD.eot?#iefix")
+      format("embedded-opentype"),url("/assets/font/fa/samim/Samim-Bold-FD.woff2")
+      format("woff2"),
+      url("/assets/font/fa/samim/Samim-Bold-FD.woff") format("woff"),
+      url("/assets/font/fa/samim/Samim-Bold-FD.ttf") format("truetype");
+}
+
+
+html[lang="en"] body,
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3,
+html[lang="en"] h4,
+html[lang="en"] h5,
+html[lang="en"] h6,
+html[lang="en"] div,
+html[lang="en"] p,
+html[lang="en"] span,
+html[lang="en"] a,
+html[lang="en"] table,
+html[lang="en"] td,
+html[lang="en"] tr,
+html[lang="en"] th,
+html[lang="en"] li,
+html[lang="en"] ul,
+html[lang="en"] ol,
+html[lang="en"] input,
+html[lang="en"] button,
+html[lang="en"] textarea,
+html[lang="en"] label {
+  margin: 0;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+html[lang="fa"] body,
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] h4,
+html[lang="fa"] h5,
+html[lang="fa"] h6,
+html[lang="fa"] div,
+html[lang="fa"] p,
+html[lang="fa"] span,
+html[lang="fa"] a,
+html[lang="fa"] table,
+html[lang="fa"] td,
+html[lang="fa"] tr,
+html[lang="fa"] th,
+html[lang="fa"] li,
+html[lang="fa"] ul,
+html[lang="fa"] ol,
+html[lang="fa"] input,
+html[lang="fa"] button,
+html[lang="fa"] textarea,
+html[lang="fa"] label {
+  margin: 0;
+  /* font-family: "IRANSans", Helvetica, sans-serif; */
+  font-family: "Vazir", Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+html[lang="en"] .mat-card {
+  font-family: "Open Sans", Helvetica, sans-serif !important;
+}
+html[lang="fa"] .mat-card {
+  font-family: "Vazir", Helvetica, sans-serif !important;
+}
+h3,h4 {
+  font-weight: 400 !important;
+}
+h1,h2 {
+  font-weight: 500 !important;
+}
+
+html[dir="ltr"] .mat-column-operations {
+  text-align: right !important;
+}
+html[dir="rtl"] .mat-column-operations {
+  text-align: left !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0.5em 0 !important;
+}
+
+body[class*="theme-dark"] ::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+body[class*="theme-dark"] ::-webkit-scrollbar-track {
+  background-color: rgb(83, 83, 83);
+}
+
+body[class*="theme-dark"] ::-webkit-scrollbar-thumb {
+  background-color: #9b9b9b;
+  border-radius: 2px;
+}
+
+body[class*="theme-light"] ::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+body[class*="theme-light"] ::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+body[class*="theme-light"] ::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 2px;
+}

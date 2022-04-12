@@ -1,0 +1,39 @@
+.top-statistic .mat-card{
+   text-align: center;
+   background-image: url(/assets/img/analysis2.png);
+   background-size: cover;
+   background-repeat: repeat-y;
+   background-position: left;
+}
+.top-statistic .mat-card-title{
+    font-size: 38px;
+}
+/* .top-statistic div:nth-child(1) div:nth-child(1) .mat-card .mat-card-subtitle,
+.top-statistic div:nth-child(1) div:nth-child(1) .mat-card .mat-card-title{
+    color: lightcoral !important;
+}
+.top-statistic div:nth-child(1) div:nth-child(2) .mat-card .mat-card-subtitle,
+.top-statistic div:nth-child(1) div:nth-child(2) .mat-card .mat-card-title{
+    color: seagreen !important;
+}
+.top-statistic div:nth-child(2) div:nth-child(1) .mat-card .mat-card-subtitle,
+.top-statistic div:nth-child(2) div:nth-child(1) .mat-card .mat-card-title{
+    color: steelblue !important;
+}
+.top-statistic div:nth-child(2) div:nth-child(2) .mat-card .mat-card-subtitle,
+.top-statistic div:nth-child(2) div:nth-child(2) .mat-card .mat-card-title{
+    color: goldenrod !important;
+} */
+
+.multi-lang .mat-card{
+    text-align: center;
+    background-image: url(/assets/img/map.png);
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: left;
+ }
+
+ .flags img{
+width: 100px;
+border-radius: 20px;
+ }

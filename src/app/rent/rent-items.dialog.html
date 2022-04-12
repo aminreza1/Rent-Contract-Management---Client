@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>{{ "Dialogs.RentItems.Title" | translate }}</h1>
+<div mat-dialog-content>
+  <p>{{ "Dialogs.RentItems.Desc.CustomerName" | translate }} : {{ data.customerFullName }}</p>
+  <p>{{ "Dialogs.RentItems.Desc.CustomerMobile" | translate }} : {{ data.customerMobileNumber  }}</p>
+  <p>{{ "Dialogs.RentItems.Desc.RentDate" | translate }} : {{ data.rentDateTime | dateLocale:localService.get() }}</p>
+<div class="title title-primary" fxLayout="row">
+  <mat-icon class="m-1">reorder</mat-icon>
+  <p>{{ "Dialogs.RentItems.ItemTitle" | translate }} : </p>
+</div>
+
+    <table mat-table [dataSource]="data.items" class="" style="width: 100%;">
+
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="ProductName">
+        <th mat-header-cell *matHeaderCellDef> {{ "Dialogs.RentItems.Table.Headers.ProductName" | translate }} </th>
+        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="PriceWhenRenting">
+        <th mat-header-cell *matHeaderCellDef> {{ "Dialogs.RentItems.Table.Headers.PriceWhenRenting" | translate }} </th>
+        <td mat-cell *matCellDef="let element"> {{element.priceWhenRenting | number: "1.0-2"}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="UnitWhenRenting">
+        <th mat-header-cell *matHeaderCellDef> {{ "Dialogs.RentItems.Table.Headers.UnitWhenRenting" | translate }} </th>
+        <td mat-cell *matCellDef="let element"> {{element.unitWhenRenting}} </td>
+      </ng-container>
+    
+     
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button [mat-dialog-close]="data" cdkFocusInitial> {{ "Dialogs.RentItems.Buttons.Close" | translate }} </button>
+</div>
+

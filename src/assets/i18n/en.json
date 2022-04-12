@@ -1,0 +1,547 @@
+{
+  "Global":{
+    "LoaderText":"We are receiving information ...",
+    "Processing":"Processing",
+    "Rials" : "IRR",
+    "Dollar":"$"
+  },
+  "Layout": {
+    "Toolbar": {
+      "Title": "Rent Contract Management System",
+      "TitleMobile": "RCMS",
+      "Menu": "Menu"
+    },
+    "SideNav": {
+      "Dashboard": "Dashboard",
+      "Contracts": "Contracts",
+      "Products": "Products",
+      "Customers": "Customers",
+      "Patterns": "Rent Patterns",
+      "Users": "Users",
+      "Settings": "Settings",
+      "Logout": "Logout",
+      "Language": "Languages",
+      "English": "English",
+      "Persian": "Persian",
+      "Dark": "Dark"
+    }
+  },
+  "Login": {
+    "Title": "Login with your account",
+    "Desc": "You can log in with your existing account in the below fields.",
+    "Form": {
+      "Username": "Username",
+      "Password": "Password"
+    },
+    "PlaceHolders": {
+      "Username": "Enter your username",
+      "Password": "Enter your password"
+    },
+    "Buttons": {
+      "Login": "Login",
+      "Register": "I don't have any accounts"
+    }
+  },
+  "Dashboard": {
+    "Title": "Welcome To The Best Rent Contracts Management System",
+    "Desc": "Rental contract management system helps you organize your business and reduce written calculation mistakes.",
+    "CanCustom": "We can customize this system according to your needs, just contact us",
+    "LinkText": "Click on my personal website : ",
+    "MyName": "Click here",
+    "Widgets": {
+      "Statistics": {
+        "Customer": {
+          "Primary": "Total customers",
+          "Secondary": "Active in 30 days"
+        },
+        "Rent": {
+          "Primary": "Total contracts",
+          "Secondary": "Terminated"
+        },
+        "Product": {
+          "Primary": "Total products",
+          "Secondary": "Active"
+        },
+        "Finance": {
+          "Primary": "Last month's income",
+          "Secondary": "Receivable"
+        }
+      },
+      "MultiLang": {
+        "HeadTitle": "This is a multi-language application",
+        "Title": "AND WE ARE IN TWO LANGUAGES NOW",
+        "SubTitle": "Switch languages by click on below icons now!"
+      }
+    }
+  },
+  "Product": {
+    "Title": "Products",
+    "Desc": "This is product list and you access to product operations.",
+    "Table": {
+      "Headers": {
+        "Name": "Name",
+        "Code": "Code",
+        "Price": "Rent Price",
+        "Unit": "Rent Unit",
+        "MinUFR": "MinUFR",
+        "MaxUFR": "MaxUFR"
+      }
+    },
+    "Buttons": {
+      "Add": "Add New Product"
+    },
+    "Add": {
+      "Title": "Create New Product",
+      "Desc": "You can create a new product by below fields.",
+      "Form": {
+        "Name": "Product Name",
+        "Code": "Product Code",
+        "Price": "Rent Price",
+        "Unit": "Choose Rent Unit"
+      },
+      "PlaceHolders": {
+        "Name": "Enter product name",
+        "Code": "Enter a unique code product",
+        "Price": "Enter rent price per unit"
+      },
+      "Errors":{
+        "Required":{
+          "Name":"Product name is required",
+          "Code":"Product code is required",
+          "Price":"Rent price is required"
+        },
+        "Pattern":{
+          "Price":"Rent price must be numbers"
+        }
+      },
+      "Buttons": {
+        "Save": "Save Product",
+        "Return": "Return to product list"
+      }
+    },
+    "Edit": {
+      "Title": "Update The Product",
+      "Desc": "You can update the product by changing below fields.",
+      "Info": "You want to update a product with current name :",
+      "Form": {
+        "Name": "Product Name",
+        "Code": "Product Code",
+        "Price": "Rent Price",
+        "Unit": "Choose Rent Unit"
+      },
+      "PlaceHolders": {
+        "Name": "Enter product name",
+        "Code": "Enter a unique code product",
+        "Price": "Enter rent price per unit"
+      },
+      "Errors":{
+        "Required":{
+          "Name":"Product name is required",
+          "Code":"Product code is required",
+          "Price":"Rent price is required"
+        },
+        "Pattern":{
+          "Price":"Rent price must be numbers"
+        }
+      },
+      "Buttons": {
+        "Save": "Save Changes",
+        "Return": "Return to product list"
+      }
+    },
+    "RentUnits":{
+      "Hourly":"Hourly",
+      "Daily":"Daily",
+      "Weekly":"Weekly",
+      "Monthly":"Monthly"
+    }
+  },
+  "Customer": {
+    "Title": "Customers",
+    "Desc": "This is customer list and you access to customer operations.",
+    "Table": {
+      "Headers": {
+        "Name": "Name",
+        "NationalCode": "National Code",
+        "Mobile": "Mobile",
+        "Phone": "Phone",
+        "Address": "Address",
+        "HasActive": "Active Contract?"
+      }
+    },
+    "Buttons": {
+      "Add": "Add New Customer"
+    },
+    "Add": {
+      "Title": "Create New Customer",
+      "Desc": "You can create a new customer by below fields.",
+
+      "Form": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "NationalCode": "National Code",
+        "Mobile": "Mobile Number",
+        "Phone": "Phone Number",
+        "Address": "Address"
+      },
+      "PlaceHolders": {
+        "FirstName": "Enter Customer first name",
+        "LastName": "Enter Customer last name",
+        "NationalCode": "Enter Customer national code",
+        "Mobile": "Enter and active mobile number",
+        "Phone": "Enter Customer Phone Number",
+        "Address": "Enter Customer Home/Work Address"
+      },
+      "Errors":{
+        "Required":{
+          "LastName":"Customer last name is required.",
+          "Mobile":"Customer mobile number is required."
+        },
+        "Pattern":{
+          "Mobile":"Mobile number must be a number and has a correct pattern"
+        }
+      },
+      "Buttons": {
+        "Save": "Save Customer",
+        "Return": "Return to customer list"
+      }
+    },
+    "Edit": {
+      "Title": "Update The Customer",
+      "Desc": "You can update the customer by changing below fields.",
+      "Form": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "NationalCode": "National Code",
+        "Mobile": "Mobile Number",
+        "Phone": "Phone Number",
+        "Address": "Address"
+      },
+      "PlaceHolders": {
+        "FirstName": "Edit customer first name",
+        "LastName": "Edit customer last name",
+        "NationalCode": "Edit customer national code",
+        "Mobile": "Edit active mobile number",
+        "Phone": "Edit customer Phone Number",
+        "Address": "Edit customer Home/Work Address"
+      },
+      "Errors":{
+        "Required":{
+          "LastName":"Customer last name is required.",
+          "Mobile":"Customer mobile number is required."
+        },
+        "Pattern":{
+          "Mobile":"Mobile number must be a number and has a correct pattern"
+        }
+      },
+      "Buttons": {
+        "Save": "Save Changes",
+        "Return": "Return to customer list"
+      }
+    }
+  },
+  "Rent": {
+    "Title": "Rent Contracts",
+    "Desc": "This is rent contract list and you access to rent operations.",
+    "Table": {
+      "Headers": {
+        "CustomerName": "Customer",
+        "Mobile": "Mobile",
+        "RentDate": "Rent Date",
+        "ReturnDate": "Return Date",
+        "FinalCost": "Final Cost",
+        "IsTerminated": "Is Terminated?"
+      }
+    },
+    "Buttons": {
+      "Add": "Add New Rent Contract"
+    },
+    "Add": {
+      "Title": "Add New Rent Contract",
+      "Desc": "You can create a new product by below fields.",
+      "Form": {
+        "SelectedCustomer": {
+          "Title": "Selected Customer",
+          "Name": "Customer Name",
+          "Mobile": "Customer Mobile",
+          "Buttons": {
+            "Remove": "Remove"
+          }
+        },
+        "CustomerName": "Customer Name",
+        "PredictedCost": "Predicted Cost (optional)",
+        "Description": "Description"
+      },
+      "PlaceHolders": {
+        "CustomerName": "Enter customer came",
+        "PredictedCost": "Enter predicted cost if you know it",
+        "Description": "Enter your description"
+      },
+      "Buttons": {
+        "Save": "Save Contract",
+        "Return": "Return to contract list"
+      },
+      "Messages": {
+        "NoSelectedRentItem": "Please add at least one product to continue.",
+        "NotSelectedCustomer": "Please search and select a customer by name.",
+        "NumOfSelectedItem": "Number of selected products for this contract"
+      },
+      "RentItems": {
+        "Title": "List of selectable products :",
+        "Desc": "Total Products",
+        "Form": {
+          "Search": "Search"
+        },
+        "PlaceHolders": {
+          "Search": "Type part of product name"
+        },
+        "AddTable": {
+          "Headers": {
+            "ProductName": "ProductName",
+            "PriceWhenRenting": "Price When Renting",
+            "UnitWhenRenting": "Unit When Renting"
+          }
+        },
+        "SelectedTable": {
+          "Title": "Selected Products (Rent Contract Items)",
+          "Headers": {
+            "ProductName": "ProductName",
+            "PriceWhenRenting": "Price When Renting",
+            "UnitWhenRenting": "Unit When Renting"
+          }
+        },
+        "Messages": {
+          "EmptyRentItemInTable": "No items selected yet.",
+          "NoResultSearch": "your search returned no results.",
+          "ZeroProductLength": "No products were found.",
+          "ErrorInGetProducts": "An error occurred while receiving the products."
+        }
+      }
+    },
+    "Edit": {
+      "Title": "Update Rent Contract Details",
+      "Desc": "You can see rent contract details and terminate it if you want.",
+      "InfoTitle": "Rent Contract Information",
+      "ItemsTitle": "Rent Contract Items",
+      "DescriptionTitle": "Description",
+      "InfoTable": {
+        "Headers": {
+          "CustomerName": "Customer Name",
+          "CustomerPhone": "Customer Phone",
+          "RentDateTime": "Rent DateTime",
+          "ReturnDateTime": "Return DateTime",
+          "PredictedCost": "Predicted Cost",
+          "CalculatedCost": "Calculated Cost",
+          "RecievedCost": "Recieved Cost"
+        }
+      },
+      "ItemsTable": {
+        "Headers": {
+          "ProductName": "ProductName",
+          "PriceWhenRenting": "Price When Renting",
+          "UnitWhenRenting": "Unit When Renting",
+          "PriceNow": "Price Now",
+          "UnitNow": "Unit Now",
+          "CalculatedCost": "Calculated Cost"
+        },
+        "TotalCost": "Total Calculated Cost :",
+        "Discount": "Total Discount :",
+        "TotalRecieved": "Total Recieved Cost :",
+        "Messages": {
+          "TotalMoreThanCalculated": "You return the product earlier than the specified date and time"
+        }
+      },
+      "OperationTitle": "Terminate Contract",
+      "Terminated": "This contract has terminated.",
+      "Form": {
+        "RecievedCost": "Recieved Cost"
+      },
+      "PlaceHolders": {
+        "RecievedCost": "Enter Recieved Cost"
+      },
+      "Buttons": {
+        "Return": "Return to contract list",
+        "Export": "Export invoice as PDF file",
+        "Terminate": "Terminate Rent Contract"
+      }
+    }
+  },
+  "User": {
+    "Title": "System Users",
+    "Desc": "This is user list and you access to user operations.",
+    "Table": {
+      "Headers": {
+        "Username": "Username",
+        "Name": "FullName",
+        "Mobile": "Mobile",
+        "Email": "Email",
+        "CreateDate": "Create DateTime",
+        "Roles": "Roles",
+        "Active": "Is Active?"
+      }
+    },
+    "Buttons": {
+      "Add": "Add New User"
+    },
+    "Add": {
+      "Title": "Create New User",
+      "Desc": "You can create a new user by below fields.",
+      "Form": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "Username": "Username",
+        "Password": "Password",
+        "Mobile": "Mobile Number",
+        "MobileConfirmed": "Mobile Number Confirmed ?",
+        "Email": "Email",
+        "EmailConfirmed": "Email Confirmed ?",
+        "Roles": "Roles",
+        "Block": "The user is blocked ?"
+      },
+      "PlaceHolders": {
+        "FirstName": "Enter First Name",
+        "LastName": "Enter Last Name",
+        "Username": "Enter Username",
+        "Password": "Enter Password",
+        "Mobile": "Enter Mobile Number",
+        "Email": "Enter Email"
+      },
+      "Errors":{
+        "Required":{
+          "Username":"Username is required",
+          "Password":"password is required",
+          "Mobile":"mobile number is required"
+        },
+        "Pattern":{
+          "Mobile":"Mobile number must be a number and has a correct pattern"
+        }
+      },
+      "Buttons": {
+        "Save": "Save User",
+        "Return": "Return to user list"
+      }
+    },
+    "Edit": {
+      "Title": "Update User",
+      "Desc": "You can update current user by below fields.",
+      "Form": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "Username": "Username",
+        "ChangePass": "Do you wanna force change the password?",
+        "Password": "Password",
+        "Mobile": "Mobile Number",
+        "MobileConfirmed": "Mobile Number Confirmed ?",
+        "Email": "Email",
+        "EmailConfirmed": "Email Confirmed ?",
+        "Roles": "Roles",
+        "Block": "User is block?"
+      },
+      "PlaceHolders": {
+        "FirstName": "Enter First Name",
+        "LastName": "Enter Last Name",
+        "Password": "Enter New Password",
+        "Mobile": "Enter Mobile Number",
+        "Email": "Enter Email"
+      },
+      "Errors":{
+        "Required":{
+          "Username":"Username is required",
+          "Password":"password is required",
+          "Mobile":"mobile number is required"
+        },
+        "Pattern":{
+          "Mobile":"Mobile number must be a number and has a correct pattern"
+        }
+      },
+      "Buttons": {
+        "Save": "Save Changes",
+        "Return": "Return to user list"
+      }
+    }
+  },
+  "Setting": {
+    "Title": "System Settings",
+    "Desc": "This is setting page and you can change system setting.",
+    "Form": {
+      "Theme": "Choose Theme",
+      "Lang": "Choose Language",
+      "Currency": "Choose Currency"
+    },
+    "Buttons": {
+      "Save": "Save Changes"
+    },
+    "Themes":{
+      "Light":"Light",
+      "Dark":"Dark"
+    },
+    "Langs":{
+      "En":"English",
+      "Fa":"Persian"
+    },
+    "Currencies":{
+      "Usd":"US Dollar",
+      "Gbp":"Pound",
+      "Eur":"Euro",
+      "Irr":"Persian Rials"
+    }
+  },
+  "Dialogs": {
+    "Logout": {
+      "Title": "Logout Warning!",
+      "Message": "You want to log out! Are you sure ?",
+      "Buttons":{
+        "Yes":"Certainly",
+        "No":"I'm not sure"
+      }
+    },
+    "RentItems": {
+      "Title":"Rent Contract Items",
+      "Desc":{
+        "CustomerName":"Customer Name",
+        "CustomerMobile":"Customer Mobile Number",
+        "RentDate":"Rent DateTime"
+      },
+      "ItemTitle":"Items",
+      "Table":{
+        "Headers":{
+          "ProductName":"Product Name",
+          "PriceWhenRenting":"Price When Renting",
+          "UnitWhenRenting":"Unit When Renting"
+        }
+      },
+      "Buttons":{
+        "Close":"OK"
+      }
+
+    },
+    "ConfirmTerminate": {
+      "Title":"Terminate Contract",
+      "Desc":{
+        "CustomerName":"Customer Name",
+        "RecievedPrice":"Fee received for this contract",
+        "ConfirmText":"You want terminate this rent contract. Are you sure ?"
+      },
+      "Buttons":{
+        "Yes":"Certainly",
+        "No":"I'm not sure"
+      }
+    }
+  },
+  "Errors": {
+    "E400": "Error : Bad Request",
+    "E404": "Error : Not Found",
+    "E401": "Error : Unauthorized",
+    "E403": "Error : Forbidden",
+    "E500": "Error: Internal Server Error",
+    "Default": "Error: Server Unavailable"
+  },
+  "Paginators":{
+    "ItemsPerPage" : "Items Per Page",
+    "NextPage":"Next Page",
+    "PreviousPage":"Previous Page",
+    "Page0":"Page 0 of ",
+    "Page":"Page ",
+    "Of":" of "
+  }
+}
