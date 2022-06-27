@@ -55,7 +55,10 @@ export class HttpService implements OnDestroy {
     );
   }
   getSecure<T>(url: string) {
-    return this.http
+    return 
+    
+    ///////////////////////////
+    this.http
       .get<T>(url, {
         headers: new HttpHeaders({ Authorization: 'Bearer ' + this.token }),
       })
@@ -73,6 +76,9 @@ export class HttpService implements OnDestroy {
           return throwError(message);
         })
       );
+/////////////////////////////////////
+
+
   }
   getSecureDefault<T>(url: string) {
     return this.http
@@ -148,7 +154,7 @@ export class HttpService implements OnDestroy {
       })
       .pipe(
         map((resp: any) => {
-          console.log(resp);
+          //console.log(resp);
           return resp;
         }),
         catchError((errRes: HttpErrorResponse) => {
